@@ -6,24 +6,31 @@ import AddNote from "./AddNote";
 
 
 function App() {
-  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([{}]);
   
-  useEffect(()=> {
-    fetch("https://coms3102-final-production.up.railway.app/api").then(
-      response => response.json()
-    ).then(
-      data=>{
-        setNotes(data.notes)
-      }
-    )
-  },[])
+  useEffect(() => {
+    fetch(`/api/`)
+      .then(response => {
+        if (!response.ok) {
+          console.log(response);
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setNotes(data.notes);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+
+      });
+  }, []);
   console.log(notes);
   var length = notes.length;
   console.log(length);
   function addNote(note) {
     console.log(note)
-    fetch("https://coms3102-final-production.up.railway.app/api/add/", {
+    fetch("/api/add/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -45,7 +52,7 @@ function App() {
   }
 
   function deleteNote(id) {
-    fetch(`https://coms3102-final-production.up.railway.app/api/delete/${id}`, {
+    fetch(`/api/delete/${id}`, {
       method: "DELETE",
     })
       .then(response => {
