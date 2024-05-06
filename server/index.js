@@ -15,7 +15,8 @@ async function connect(){
 }
 
 connect();
-app.listen(5050, ()=>{console.log("Server started on port 5050")});
+const port = process.env.PORT || 5050;
+app.listen(port, "0.0.0.0", ()=>{console.log("Server started on port 5050")});
 const noteSchema = new mongoose.Schema({
     key:Number, 
     title: String, 
