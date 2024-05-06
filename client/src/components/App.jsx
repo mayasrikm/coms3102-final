@@ -10,7 +10,7 @@ function App() {
   const [notes, setNotes] = useState([{}]);
   
   useEffect(()=> {
-    fetch("https://coms3102-final-production.up.railway.app/api").then(
+    fetch("http://coms3102-final-production.up.railway.app/api").then(
       response => response.json()
     ).then(
       data=>{
@@ -23,7 +23,7 @@ function App() {
   console.log(length);
   function addNote(note) {
     console.log(note)
-    fetch("https://coms3102-final-production.up.railway.app/api/add/", {
+    fetch("http://coms3102-final-production.up.railway.app/api/add/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -45,7 +45,7 @@ function App() {
   }
 
   function deleteNote(id) {
-    fetch(`https://coms3102-final-production.up.railway.app/api/delete/${id}`, {
+    fetch(`http://coms3102-final-production.up.railway.app/api/delete/${id}`, {
       method: "DELETE",
     })
       .then(response => {
