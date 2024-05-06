@@ -5,12 +5,12 @@ import Note from "./Note";
 import AddNote from "./AddNote";
 
 
-
 function App() {
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([{}]);
   
   useEffect(()=> {
-    fetch("/api").then(
+    fetch("https://coms3102-final-production.up.railway.app/api").then(
       response => response.json()
     ).then(
       data=>{
@@ -23,7 +23,7 @@ function App() {
   console.log(length);
   function addNote(note) {
     console.log(note)
-    fetch("/api/add/", {
+    fetch("https://coms3102-final-production.up.railway.app/api/add/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -45,7 +45,7 @@ function App() {
   }
 
   function deleteNote(id) {
-    fetch(`/api/delete/${id}`, {
+    fetch(`https://coms3102-final-production.up.railway.app/api/delete/${id}`, {
       method: "DELETE",
     })
       .then(response => {
