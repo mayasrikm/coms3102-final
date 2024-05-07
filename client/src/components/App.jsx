@@ -9,10 +9,10 @@ function App() {
   const [notes, setNotes] = useState([{}]);
   
   useEffect(() => {
-    fetch(`/api/`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/`)
       .then(response => {
         if (!response.ok) {
-          console.log(response);
+          console.log("hi",response);
           throw new Error('Network response was not ok');
         }
         return response.json();
@@ -30,7 +30,7 @@ function App() {
   console.log(length);
   function addNote(note) {
     console.log(note)
-    fetch("/api/add/", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/add/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -52,7 +52,7 @@ function App() {
   }
 
   function deleteNote(id) {
-    fetch(`/api/delete/${id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete/${id}`, {
       method: "DELETE",
     })
       .then(response => {

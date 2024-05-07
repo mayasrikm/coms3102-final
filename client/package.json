@@ -1,7 +1,7 @@
 {
   "name": "students-keeper-app-part-1-starting-forked",
   "version": "1.0.0",
-  "proxy": "http://localhost:5050",
+  "proxy": "https://coms3102-final-production.up.railway.app",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
