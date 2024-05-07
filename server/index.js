@@ -84,7 +84,7 @@ app.delete("/api/delete/:id", async(req, res) => {
         const key = parseInt(req.params.id);
 
         try {
-            const deletedNote = await noteModel.findOneAndDelete({ key: key+1 });
+            const deletedNote = await noteModel.findOneAndDelete({ id: key });
             if (!deletedNote) {
             return res.status(404).json({ error: "Note not found." });
             }
