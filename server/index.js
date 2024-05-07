@@ -81,7 +81,7 @@ app.delete("/api/delete/:id", async(req, res) => {
         // notes.splice(index, 1);
         // res.status(200).json({ message: "Note deleted." });
 
-        const key = parseInt(req.params.key);
+        const key = parseInt(req.params.id);
         try {
             const deletedNote = await noteModel.findOneAndDelete({ key: key });
             if (!deletedNote) {
