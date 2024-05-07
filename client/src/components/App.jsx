@@ -56,11 +56,12 @@ function App() {
       .catch(error => console.error("Error adding note:", error));
   }
 
-  function deleteNote(id) {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete/${id}`, {
+  function deleteNote(key) {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete/${key}`, {
       method: "DELETE",
     })
       .then(response => {
+        console.log("hello",key);
         if (!response.ok) {
           console.log(response.json())
           throw new Error("Failed to delete note");
@@ -68,7 +69,7 @@ function App() {
         return response.json();
       })
       .then(() => {
-        setNotes(prevNotes => prevNotes.filter((noteItem, index) => index !== id));
+        setNotes(prevNotes => prevNotes.filter(noteItem => noteItem.key !== key))
       })
       .catch(error => console.error("Error deleting note:", error));
   

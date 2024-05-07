@@ -72,7 +72,7 @@ app.post("/api/add/", async(req, res) => {
 
 });
 
-app.delete("/api/delete/:id", async(req, res) => {
+app.delete("/api/delete/:key", async(req, res) => {
         // const id = parseInt(req.params.id)+1;
         // const index = notes.findIndex(note => note.key === id);
         //     if (index === -1) {
@@ -81,7 +81,7 @@ app.delete("/api/delete/:id", async(req, res) => {
         // notes.splice(index, 1);
         // res.status(200).json({ message: "Note deleted." });
 
-        const key = parseInt(req.params.id);
+        const key = parseInt(req.params.key);
         console.log("HELLO", key);
         try {
             const deletedNote = await noteModel.findOneAndDelete({ key: key });
