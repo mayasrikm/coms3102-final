@@ -26,8 +26,13 @@ function App() {
       });
   }, []);
   console.log(notes);
-  var length = notes.length;
-  console.log(length);
+  
+  let maxKey = 0;
+  for (const note of notes) {
+    if (note.key > maxKey) {
+      maxKey = note.key;
+    }
+  }
   function addNote(note) {
     console.log(note)
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/add/`, {
@@ -35,7 +40,7 @@ function App() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({key:length+1, title:note.title, content: note.content}) 
+      body: JSON.stringify({key:maxKey+1, title:note.title, content: note.content}) 
     })
       .then(response => {
         if (!response.ok) {
