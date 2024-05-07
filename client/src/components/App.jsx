@@ -35,7 +35,7 @@ function App() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({key:length, title:note.title, content: note.content}) 
+      body: JSON.stringify({key:length+1, title:note.title, content: note.content}) 
     })
       .then(response => {
         if (!response.ok) {
